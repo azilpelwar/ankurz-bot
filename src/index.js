@@ -47,11 +47,12 @@ client.on("message", async (message) => {
       message.reply("No recent query found. Try something else.");
     }
   } else {
-    const currentDate = new Date();
+    const currentDate = new Date();   
+    const differenceInTime = currentDate.getTime() - botBirthDate.getTime();
+
+    const differenceInDays = differenceInTime / (1000 * 3600 * 24);
     message.reply(
-      `Sorry couldn't understand what you are saying. I am just ${
-        currentDate - botBirthDate
-      } days old! :)`
+      `Sorry couldn't understand what you are saying. I am just ${differenceInDays} days old! :)`
     );
   }
 });
