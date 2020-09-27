@@ -6,7 +6,6 @@ const googleHandler = require("./googlehandler");
 const recentHandler = require("./recenthandler");
 const client = new Discord.Client();
 const prefix = "!";
-const botBirthDate = new Date("25/09/2020");
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}`);
@@ -18,7 +17,7 @@ client.on("message", async (message) => {
     if (message.content === "hi") {
       message.reply("Greetings!");
     }
-    return;
+    message.reply("I only support !google and !recent commands.");
   }
   const commandBody = message.content.slice(prefix.length);
   const args = commandBody.split(" ");
@@ -47,12 +46,9 @@ client.on("message", async (message) => {
       message.reply("No recent query found. Try something else.");
     }
   } else {
-    const currentDate = new Date();   
-    const differenceInTime = currentDate.getTime() - botBirthDate.getTime();
 
-    const differenceInDays = differenceInTime / (1000 * 3600 * 24);
     message.reply(
-      `Sorry couldn't understand what you are saying. I am just ${differenceInDays} days old! :)`
+      `Sorry couldn't understand what you are saying. I am just few days old! :)`
     );
   }
 });
