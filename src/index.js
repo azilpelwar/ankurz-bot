@@ -6,6 +6,7 @@ const googleHandler = require("./googlehandler");
 const recentHandler = require("./recenthandler");
 const client = new Discord.Client();
 const prefix = "!";
+const botBirthDate = new Date("25/09/2020");
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}`);
@@ -45,6 +46,13 @@ client.on("message", async (message) => {
     } else {
       message.reply("No recent query found. Try something else.");
     }
+  } else {
+    const currentDate = new Date();
+    message.reply(
+      `Sorry couldn't understand what you are saying. I am just ${
+        currentDate - botBirthDate
+      } days old! :)`
+    );
   }
 });
 
