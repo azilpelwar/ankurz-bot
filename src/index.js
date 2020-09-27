@@ -18,6 +18,7 @@ client.on("message", async (message) => {
       message.reply("Greetings!");
     }
     message.reply("I only support !google and !recent commands.");
+    return;
   }
   const commandBody = message.content.slice(prefix.length);
   const args = commandBody.split(" ");
