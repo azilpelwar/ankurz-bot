@@ -3,6 +3,7 @@ require("dotenv").config();
 
 const { BOT_TOKEN } = process.env;
 const googleHandler = require("./googlehandler");
+const recentHandler = require("./recenthandler");
 const client = new Discord.Client();
 const prefix = "!";
 
@@ -28,13 +29,22 @@ client.on("message", async (message) => {
   } else if (command === "google") {
     //TODO User google custom serach api to search on google and return the first 5 links
     const result = await googleHandler.handleGoogleCommands(args);
-    result.forEach((res) => {
-      message.channel.send(res);
-    });
-
-    //TODO store the recent searches, skip the duplicate search keywords
+    if (result != "") {
+      result.forEach((res) => {
+        message.channel.send(res);
+      });
+    } else {
+      message.reply("No results found your query. Try something else.");
+    }
   } else if (command === "recent") {
-    //TODO: search the heroku DB for replying the search keyword from the DB
+    const result = await recentHandler.handleRecentCommands(args);
+    if (result != "") {
+      result.forEach((res) => {
+        message.channel.send(res);
+      });
+    } else {
+      message.reply("No recent query found. Try something else.");
+    }
   }
 });
 
