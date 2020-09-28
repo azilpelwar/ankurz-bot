@@ -28,7 +28,6 @@ client.on("message", async (message) => {
     const timeTaken = Date.now() - message.createdTimestamp;
     message.reply(`Pong! This message had latency of ${timeTaken}ms.`);
   } else if (command === "google") {
-    //TODO User google custom serach api to search on google and return the first 5 links
     const result = await googleHandler.handleGoogleCommands(args);
     if (result != "") {
       result.forEach((res) => {
