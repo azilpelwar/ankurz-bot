@@ -16,6 +16,7 @@ client.on("message", async (message) => {
   if (!message.content.startsWith(prefix)) {
     if (message.content === "hi") {
       message.reply("Greetings!");
+      return;
     }
     message.reply("I only support !google and !recent commands.");
     return;
